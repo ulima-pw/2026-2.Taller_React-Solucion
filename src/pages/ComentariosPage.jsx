@@ -2,7 +2,7 @@ import { useState } from "react"
 
 export default function ComentariosPage() {
     const [textoComentario, setTextoComentario] = useState("")
-
+    const [listaComentarios, setListaComentarios] = useState([])
 
     return <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mt-6">
         <h3 className="text-lg font-semibold mb-4 text-gray-700">Agregar Comentario</h3>
@@ -16,21 +16,26 @@ export default function ComentariosPage() {
                     setTextoComentario(ev.target.value)
                 } } />
 
-            <button className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700">
+            <button type="button" 
+                className="w-full bg-blue-600 text-white py-2 rounded-lg font-medium hover:bg-blue-700"
+                onClick={ function() {
+                    if (textoComentario != "") {
+                        setListaComentarios( [...listaComentarios, textoComentario] )
+                        setTextoComentario("")
+                    }
+                } }>
                 Publicar
             </button>
         </form>
 
         <ul className="mt-4 space-y-2">
-            <li className="text-sm bg-gray-50 p-2 rounded border-l-4 border-blue-500 text-gray-600">
-                Ejemplo de comentario estático.
-            </li>
-            <li className="text-sm bg-gray-50 p-2 rounded border-l-4 border-blue-500 text-gray-600">
-                Ejemplo de comentario estático.
-            </li>
-            <li className="text-sm bg-gray-50 p-2 rounded border-l-4 border-blue-500 text-gray-600">
-                Ejemplo de comentario estático.
-            </li>
+            {
+                listaComentarios.map( function(com) {
+                    return <li className="text-sm bg-gray-50 p-2 rounded border-l-4 border-blue-500 text-gray-600">
+                        { com }
+                    </li>
+                } )
+            }
         </ul>
     </div>
 }
