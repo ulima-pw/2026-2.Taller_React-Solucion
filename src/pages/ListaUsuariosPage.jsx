@@ -1,4 +1,4 @@
-import UserProfile from "./UserProfile"
+import UserProfile from "../components/UserProfile"
 
 const listaUsuarios = [
     { nombre : "Oscar", carrera : "Ingeniero de Sistemas", frase : "Apasionado por la arquitectura de software y el desarrollo frontend.", urlFoto : "http://localhost:5173/messi.jpeg"},
